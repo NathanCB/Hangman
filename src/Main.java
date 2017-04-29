@@ -28,8 +28,14 @@ public class Main {
         String hiddenWord = randWord.getWord();
 
         ArrayList<Character> characters = new ArrayList<>();
+        HashMap<Character,Character> charMap = new HashMap<>();
+
         hiddenWord.chars().mapToObj(i -> (char) i).forEach(i -> characters.add(i));
-//        characters.forEach(System.out::println);
+        characters.forEach(System.out::println);
+
+        Character underScore = '_';
+        characters.forEach((c) -> charMap.put(c, underScore));
+
 
         System.out.println("Guess a letter for the hidden word. The word has " + characters.size() + " letters.");
 
@@ -43,10 +49,8 @@ public class Main {
 
         }
         //map each character in characters to underscore
-        HashMap<Character, Character> underscoreMap = new HashMap<>();
 
 
-        System.out.printf("%s ", underscoreMap);
 
 
 
