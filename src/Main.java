@@ -6,6 +6,7 @@ public class Main {
     public final static String UNDERSCORE = "_";
     public final static String DEFAULT_WORD = "bicycle";
 
+
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("ShortWordList.txt");
         ArrayList<Word> words = new ArrayList<>();
@@ -25,13 +26,26 @@ public class Main {
 
         Random randNum = new Random();
         Word randWord = words.get(randNum.nextInt(words.size()));
-        String HIDDEN_WORD = randWord.toString();
+        String hiddenWord = randWord.toString();
 
-        System.out.println("Guess a letter for the hidden word. The word has " + HIDDEN_WORD.length() + " letters.");
+        System.out.println("Guess a letter for the hidden word. The word has " + hiddenWord.length() + " letters.");
 
-        for (int c = 0; c < HIDDEN_WORD.length(); c++) {
+        for (int c = 0; c < hiddenWord.length(); c++) {
             System.out.printf("%s ", UNDERSCORE);
         }
+
+        Scanner scanner = new Scanner(System.in);
+
+        if(!hiddenWord.contains(scanner.nextLine())){
+            System.out.println("(");
+        }
+        else{
+            System.out.println("Good job!");
+//            System.out.println(hiddenWord.contains());
+        }
+
+
+
 
     }
 
