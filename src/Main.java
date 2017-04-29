@@ -21,30 +21,45 @@ public class Main {
         for (String wd : wordArray) {
             Word word = new Word(wd);
             words.add(word);
-//            System.out.println(wd);
         }
 
         Random randNum = new Random();
         Word randWord = words.get(randNum.nextInt(words.size()));
-        String hiddenWord = randWord.toString();
+        String hiddenWord = randWord.getWord();
 
-        System.out.println("Guess a letter for the hidden word. The word has " + hiddenWord.length() + " letters.");
+        ArrayList<Character> characters = new ArrayList<>();
+        hiddenWord.chars().mapToObj(i -> (char) i).forEach(i -> characters.add(i));
+//        characters.forEach(System.out::println);
 
-        for (int c = 0; c < hiddenWord.length(); c++) {
-            System.out.printf("%s ", UNDERSCORE);
-        }
+        System.out.println("Guess a letter for the hidden word. The word has " + characters.size() + " letters.");
 
         Scanner scanner = new Scanner(System.in);
-
-        if(!hiddenWord.contains(scanner.nextLine())){
-            System.out.println("(");
+        if (!hiddenWord.contains(scanner.nextLine())) {
+            System.out.println("Nope, not it. Please guess again.");
+            System.out.println("(");  //Todo create a collectoin of characters for graphic representation of hanging man
         }
-        else{
-            System.out.println("Good job!");
-//            System.out.println(hiddenWord.contains());
+        //Todo replace underscore with correctly guessed letter
+        else if(hiddenWord.contains(scanner.nextLine())){
+
         }
+        //map each character in characters to underscore
+        HashMap<Character, Character> underscoreMap = new HashMap<>();
 
 
+        System.out.printf("%s ", underscoreMap);
+
+
+
+//        for (int c = 0; c < characters.size(); c++) {
+//
+//            System.out.printf("%s ", UNDERSCORE);
+//        }
+
+
+//        else{
+//            System.out.println("Good job!");
+////            System.out.println(hiddenWord.contains());
+//        }
 
 
     }
