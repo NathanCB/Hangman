@@ -1,33 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class Main {
     public final static String UNDERSCORE = "_";
     public final static String DEFAULT_WORD = "bicycle";
 
+    public static void main(String[] args) throws FileNotFoundException {
+        File f = new File("ShortWordList.txt");
+        ArrayList<Word> words = new ArrayList<>();
 
-    public static void main(String[] args) {
-        Word word = new Word();
+        Scanner s = new Scanner(f);
+        String[] wordArray = new String[0];
+        while (s.hasNext()) {
+            String line = s.next();
+            wordArray = line.split("\\,");
+        }
 
-        word.setWord(DEFAULT_WORD);
+        for (String wd : wordArray) {
+            Word word = new Word(wd);
+            words.add(word);
+//            System.out.println(wd);
+        }
 
-        int wordLength = word.getWord().toString().length();
+        Random randNum = new Random();
+        Word randWord = words.get(randNum.nextInt(words.size()));
+        String HIDDEN_WORD = randWord.toString();
 
-        System.out.println("Guess a letter for the hidden word. The word has " + wordLength + " letters.");
+        System.out.println("Guess a letter for the hidden word. The word has " + HIDDEN_WORD.length() + " letters.");
 
-        for (int c = 0; c < DEFAULT_WORD.length(); c++) {
+        for (int c = 0; c < HIDDEN_WORD.length(); c++) {
             System.out.printf("%s ", UNDERSCORE);
         }
 
-
-
-
-
-
-
-
     }
-
 
 }
