@@ -24,31 +24,36 @@ public class Main {
         Random randNum = new Random();
         Word randWord = words.get(randNum.nextInt(words.size()));
         String hiddenWord = randWord.getWord();
-        System.out.println("\nGuess a letter for the hidden word. The word has " + hiddenWord.length() + " letters.\n");
 
         ArrayList<Character> characters = new ArrayList<>();
         ArrayList<String> underscores = new ArrayList<>();
 
+
+        System.out.println("\n\nGuess a letter for the hidden word. The word has " + hiddenWord.length() + " letters.\n");
+
         hiddenWord.chars().mapToObj(c -> (char) c).forEach(i -> characters.add(i));
         characters.forEach(x -> underscores.add("_ "));
-
-        characters.forEach(System.out::print);
+        underscores.forEach(System.out::print);
 
         Scanner scanner = new Scanner(System.in);
-        Character input = scanner.nextLine().toLowerCase().charAt(0);
+        Scanner x = new Scanner(System.in);
+        do {
+            System.out.println("\nEnter a letter");
+            Character input = scanner.nextLine().toLowerCase().charAt(0);
 
-        underscores.forEach(System.out::print);
-
-        for (int i = 0; i < characters.size(); i++) {
-            if (input == characters.get(i)) {
-                underscores.set(i, input.toString());
+            for (int i = 0; i < characters.size(); i++) {
+                if (input == characters.get(i)) {
+                    underscores.set(i, input.toString());
+                }
             }
-            break;
-        }
+            underscores.forEach(System.out::print);
 
-        underscores.forEach(System.out::print);
+            System.out.println("\n\nPress [0] to exit game, [1] to continue.");
+            if(x.nextInt() == 0){
+                break;
+            }else continue;
+        } while (underscores.contains("_ "));
 
-
+        characters.forEach(System.out::print);
     }
-
 }
